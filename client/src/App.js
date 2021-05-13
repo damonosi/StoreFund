@@ -19,6 +19,8 @@ import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
 import SubCreate from "./pages/admin/sub/SubCreate";
 import SubUpdate from "./pages/admin/sub/SubUpdate";
 import ProductCreate from "./pages/admin/product/ProductCreate";
+import ProductsPage from "./pages/admin/product/ProductsPage";
+import ProductUpdate from "./pages/admin/product/ProductUpdate";
 
 import UserRoute from "./components/routes/UserRoute";
 import AdminRoute from "./components/routes/AdminRoute";
@@ -34,7 +36,6 @@ const App = () => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         const idTokenResult = await user.getIdTokenResult();
-        console.log("user", user);
 
         currentUser(idTokenResult.token)
           .then((res) => {
@@ -61,16 +62,16 @@ const App = () => {
       <ToastContainer />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/login" component={LoginPage} />
+        <Route exact path="/login" component={LoginPage} />
         <Route exact path="/register" component={RegisterPage} />
-        <Route path="/register/complete" component={RegisterComplete} />
-        <Route path="/forgot/password" component={ForgotPasswordPage} />
+        <Route exact path="/register/complete" component={RegisterComplete} />
+        <Route exact path="/forgot/password" component={ForgotPasswordPage} />
 
-        <UserRoute path="/user/history" component={History} />
-        <UserRoute path="/user/password" component={Password} />
-        <UserRoute path="/user/wishlist" component={Wishlist} />
+        <UserRoute exact path="/user/history" component={History} />
+        <UserRoute exact path="/user/password" component={Password} />
+        <UserRoute exact path="/user/wishlist" component={Wishlist} />
 
-        <AdminRoute path="/admin/dashboard" component={AdminDashboard} />
+        <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
         <AdminRoute exact path="/admin/category" component={CategoryCreate} />
         <AdminRoute
           exact
@@ -80,6 +81,12 @@ const App = () => {
         <AdminRoute exact path="/admin/sub" component={SubCreate} />
         <AdminRoute exact path="/admin/sub/:slug" component={SubUpdate} />
         <AdminRoute exact path="/admin/product" component={ProductCreate} />
+        <AdminRoute exact path="/admin/products" component={ProductsPage} />
+        <AdminRoute
+          exact
+          path="/admin/product/:slug"
+          component={ProductUpdate}
+        />
       </Switch>
     </>
   );

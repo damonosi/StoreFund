@@ -7,9 +7,9 @@ const { readdirSync } = require("fs");
 require("dotenv").config();
 
 const app = express();
-mongoose.set("useFindAndModify", false);
 
 mongoose
+  .set("useFindAndModify", false)
   .connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useCreateIndex: true,

@@ -28,7 +28,7 @@ const productSchema = new mongoose.Schema(
       trim: true,
       maxLength: [32, "Too long"],
     },
-    category: { type: ObjectId, ref: "Category", required: true },
+    category: { type: ObjectId, ref: "Category" },
     subs: [{ type: ObjectId, ref: "Sub" }],
     quantity: Number,
     sold: {
@@ -42,12 +42,12 @@ const productSchema = new mongoose.Schema(
       type: String,
       enum: ["Yes", "No"],
     },
-    ratings: [
-      {
-        star: Number,
-        postedBy: { type: ObjectId, ref: "User" },
-      },
-    ],
+    // ratings: [
+    //   {
+    //     star: Number,
+    //     postedBy: { type: ObjectId, ref: "User" },
+    //   },
+    // ],
     brand: {
       type: String,
       enum: ["Miere", "Dulceata", "Sirop", "Uleiuri"],
